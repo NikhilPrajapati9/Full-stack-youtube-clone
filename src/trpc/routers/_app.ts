@@ -1,16 +1,20 @@
-import { z } from 'zod';
-import { baseProcedure, createTRPCRouter } from '../init';
-import { TRPCError } from '@trpc/server';
+import { z } from "zod";
+import { createTRPCRouter, protectedProcedure } from "../init";
+import { TRPCError } from "@trpc/server";
+
 export const appRouter = createTRPCRouter({
-  hello: baseProcedure
+  hello: protectedProcedure
     .input(
       z.object({
         text: z.string(),
-      }),
+      })
     )
-    .query((opts) => {
-      // throw new TRPCError({code:"BAD_REQUEST"})
-      //databse and load the video
+    .query(async (opts) => {
+      
+      
+
+      
+
       return {
         greeting: `hello ${opts.input.text}`,
       };
